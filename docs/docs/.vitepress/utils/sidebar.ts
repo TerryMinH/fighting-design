@@ -40,10 +40,16 @@ export const sidebar = {
       text: '数据展示',
       link: '/components/',
       items: [
+        { text: 'Badge 角标', link: '/components/badge' },
         { text: 'Image 图片', link: '/components/image' },
         { text: 'Card 卡片', link: '/components/card' },
         { text: 'Tag 标签', link: '/components/tag' }
       ]
+    },
+    {
+      text: '其它',
+      link: '/components/',
+      items: [{ text: 'Divider 分隔线', link: '/components/divider' }]
     }
   ]
 }

@@ -1,4 +1,4 @@
-import type { App } from 'vue'
+// import type { App } from 'vue'
 import { FButton } from './button'
 import { FIcon } from './icon'
 import { FButtonGroup } from './button-group'
@@ -12,6 +12,9 @@ import { FHeader } from './header'
 import { FAside } from './aside'
 import { FMain } from './main'
 import { FContainer } from './container'
+import { FSwitch } from './switch'
+import { FBadge } from './badge'
+import { FAvatar } from './avatar'
 
 const components = {
   FButton,
@@ -26,10 +29,14 @@ const components = {
   FHeader,
   FAside,
   FMain,
-  FContainer
+  FContainer,
+  FSwitch,
+  FBadge,
+  FAvatar
 }
 
-const install = (app: App): void => {
+// const install = (app: App): void => {
+const install = (app: any): void => {
   Object.entries(components).forEach(([key, value]) => {
     app.component(key, value)
   })
@@ -48,7 +55,10 @@ export {
   FHeader,
   FAside,
   FMain,
-  FContainer
+  FContainer,
+  FSwitch,
+  FBadge,
+  FAvatar
 }
 
 export default {
