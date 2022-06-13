@@ -4,7 +4,7 @@ import type {
   buttonTarget,
   buttonType,
   buttonNativeType
-} from '@fighting-design/fighting-type'
+} from './interface'
 
 export const Props = {
   blob: {
@@ -112,6 +112,10 @@ export const Props = {
   ripplesColor: {
     type: String,
     default: (): string => '#fff'
+  },
+  color: {
+    type: String,
+    default: (): string => ''
   }
 } as const
 
