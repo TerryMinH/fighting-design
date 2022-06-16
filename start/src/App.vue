@@ -1,21 +1,10 @@
 <template>
-  <f-divider type="dashed">我是虚线</f-divider>
-  <f-divider type="dotted">我是圆点</f-divider>
-  <f-divider type="double" margin="140px">我双实线</f-divider>
-  <f-divider type="solid">我是直线</f-divider>
-
-  <!-- <div class="box solid"></div> -->
+  <f-switch v-model="value1" disabled />
+  <f-switch v-model="value2" />
 </template>
 
-<script lang="ts" setup></script>
-
-<style scoped>
-  .box {
-    width: 300px;
-    height: 100px;
-    border: 3px solid black;
-  }
-  .solid {
-    border-style: dashed;
-  }
-</style>
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  const value1 = ref(true)
+  const value2 = ref(false)
+</script>
