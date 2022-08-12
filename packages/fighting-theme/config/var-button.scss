@@ -1,26 +1,29 @@
-@import '../config/color.scss';
-@import '../config/size.scss';
+@import '../config/const-size.scss';
 
-@mixin btnSizes($height, $padding, $fontSize) {
-  height: $height;
-  padding: 0 $padding;
-  line-height: $height;
-  font-size: $fontSize;
-}
-
-// 不同的类型
-$ButtonTypes: (
-  'default': $default,
-  'primary': $primary,
-  'success': $success,
-  'danger': $danger,
-  'warning': $warning
-);
-
-// 不同尺寸
-$ButtonSizes: (
-  'large': $large,
-  'middle': $middle,
-  'small': $small,
-  'mini': $mini
+// 不同大小
+$buttonSize: (
+  (
+    name: 'large',
+    height: $large,
+    fontSize: 15px,
+    padding: 30px
+  ),
+  (
+    name: 'middle',
+    height: $middle,
+    fontSize: 14px,
+    padding: 25px
+  ),
+  (
+    name: 'small',
+    height: $small,
+    fontSize: 13px,
+    padding: 20px
+  ),
+  (
+    name: 'mini',
+    height: $mini,
+    fontSize: 12px,
+    padding: 15px
+  )
 );

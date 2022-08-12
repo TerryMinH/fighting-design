@@ -1,22 +1,10 @@
-<template>
-  <section
-    :class="[
-      'f-layout',
-      {
-        'is-vertical': isVertical
-      }
-    ]"
-  >
-    <slot />
-  </section>
-</template>
-
 <script setup lang="ts" name="FLayout">
   import { useSlots, computed } from 'vue'
-  import type { VNode, Component } from 'vue'
   import { Props } from './layout'
+  import type { VNode, Component } from 'vue'
+  import type { FPropsType } from './layout'
 
-  const prop = defineProps(Props)
+  const prop: FPropsType = defineProps(Props)
   const slot = useSlots()
 
   const isVertical: Component<boolean> = computed((): boolean => {
@@ -36,3 +24,16 @@
     return false
   })
 </script>
+
+<template>
+  <section
+    :class="[
+      'f-layout',
+      {
+        'is-vertical': isVertical
+      }
+    ]"
+  >
+    <slot />
+  </section>
+</template>

@@ -1,5 +1,5 @@
 import type { badgeType } from './interface'
-import type { PropType } from 'vue'
+import type { PropType, ExtractPropTypes } from 'vue'
 
 export const Props = {
   value: {
@@ -10,11 +10,11 @@ export const Props = {
     type: Number,
     default: (): number => 99
   },
-  isDot: {
+  dot: {
     type: Boolean,
     default: (): boolean => false
   },
-  hidden: {
+  show: {
     type: Boolean,
     default: (): boolean => false
   },
@@ -26,5 +26,15 @@ export const Props = {
         val
       )
     }
+  },
+  color: {
+    type: String,
+    default: (): string => ''
+  },
+  textColor: {
+    type: String,
+    default: (): string => ''
   }
 } as const
+
+export type FPropsType = ExtractPropTypes<typeof Props>

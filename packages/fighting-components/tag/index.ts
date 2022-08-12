@@ -1,7 +1,9 @@
 import FTag from './src/tag.vue'
 
-import { install } from '@fighting-design/fighting-utils'
+import { install } from '../_utils'
 
 install(FTag, FTag.name)
 
-export { FTag }
+export type FTagInstance = InstanceType<typeof FTag>
+
+export default FTag

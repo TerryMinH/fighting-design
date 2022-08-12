@@ -1,7 +1,7 @@
 # 介绍
 
 <p align="center">
-  <img height="160px" src="https://tianyuhao.cn/fighting/imgs/FightingDesign.svg">
+  <img width="160px" src="https://tianyuhao.cn/images/fighting-design/FightingDesign.svg">
   <h2 align="center" style="font-weight: 600">Fighting Design</h2>
 
   <p align="center">
@@ -18,8 +18,21 @@
 
 ## ✨ 特性
 
+- 💪 使用 Vue.js 最新特性开发
+- 🐆 全面基于 Vite，速度够快
+- 🪐 不同打包模式，兼容不同项目
+- 🏆 支持完整引入和按需引入
 - ✅ 使用 TypeScript + Template 编写
+- 🖍️ 严格的 TypeScript 类型
 - ✔️ 配置简单，上手容易
+- 🚩 单元测试
+- 👍 社区团队维护
+- ❤️ 根据实际需求开发
+- 📃 优质详细的文档
+- 📌 完善 RFC
+- ☝️ 提出需求，不断完善
+- 🌍 更多配置项，灵活组件
+- 🛠 更多特性开发中
 
 ## :key: 安装
 
@@ -56,21 +69,13 @@ createApp(App).use(FightingDesign).mount('#app')
 
 ## 加入 Fighting Design
 
-添加微信请备注 Github 用户名
+添加微信请备注 `Github` 用户名
 
-![](https://tianyuhao.cn/images/weixin2.png)
+![](https://tianyuhao.cn/images/auto/weixin.png)
 
 ## 特别感谢
 
 感谢所有已经为 `Fighting Design` [做出贡献的人](https://github.com/FightingDesign/fighting-design/graphs/contributors)！
-
-**Star**
-
-[![Stargazers repo roster for @FightingDesign/fighting-design](https://reporoster.com/stars/FightingDesign/fighting-design)](https://github.com/FightingDesign/fighting-design/stargazers)
-
-**Fork**
-
-[![Forkers repo roster for @FightingDesign/fighting-design](https://reporoster.com/forks/FightingDesign/fighting-design)](https://github.com/FightingDesign/fighting-design/network/members)
 
 ## 执照
 

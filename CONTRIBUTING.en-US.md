@@ -1,5 +1,7 @@
 # CONTRIBUTING
 
+> English documents are not synchronized in time most of the time. Please refer to Chinese documents for details.
+
 English | [Chinese](https://github.com/FightingDesign/fighting-design/blob/master/CONTRIBUTING.md)
 
 ## Write in front
@@ -96,10 +98,11 @@ pnpm commit
 
 The main source files are in the `fighting-design/packages` directory, and each subdirectory has a separate `README.md` describes the specified directory. Refer to the following documents for detailed specifications of each module:
 
+**The detailed specifications are listed in the following links. Do not ignore the following links!!!**
+
 - [fighting-components](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-components/README.md) Component source file directory
 - [fighting-test](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-test/README.md) Unit test directory
 - [fighting-theme](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-theme/README.md) Style theme catalog
-- [fighting-utils](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-utils/README.md) Tool function directory
 
 The following is about the document specification:
 
@@ -164,11 +167,3 @@ Development is not easy, welcome to sponsor!
 ## Thank a lot
 
 Thank all those who have [contributors](https://github.com/FightingDesign/fighting-design/graphs/contributors) to `Fighting Design`!
-
-**Star**
-
-[![Stargazers repo roster for @FightingDesign/fighting-design](https://reporoster.com/stars/FightingDesign/fighting-design)](https://github.com/FightingDesign/fighting-design/stargazers)
-
-**Fork**
-
-[![Forkers repo roster for @FightingDesign/fighting-design](https://reporoster.com/forks/FightingDesign/fighting-design)](https://github.com/FightingDesign/fighting-design/network/members)

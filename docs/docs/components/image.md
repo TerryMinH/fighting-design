@@ -1,5 +1,10 @@
 # Image 图片
 
+`Image` 用于图片的展示
+
+- [源代码](https://github.com/FightingDesign/fighting-design/tree/master/packages/fighting-components/image)
+- [文档编辑](https://github.com/FightingDesign/fighting-design/blob/master/docs/docs/components/image.md)
+
 ## 基本使用
 
 使用 `src` 属性设置图片的路径，`width` 设置图片的宽度，`height` 可以设置图片的高度
@@ -258,16 +263,22 @@
 
 ## Events
 
-| 事件名称 | 说明             | 类型               |
-| -------- | ---------------- | ------------------ |
-| `load`   | 图片加载成功触发 | (e: Event) => void |
-| `error`  | 图片加载失败触发 | (e: Event) => void |
+| 事件名称 | 说明             |
+| -------- | ---------------- |
+| `load`   | 图片加载成功触发 |
+| `error`  | 图片加载失败触发 |
 
 ## Slots
 
 | 插槽名称 | 说明说明           |
 | -------- | ------------------ |
 | `error`  | 自定义加载失败提示 |
+
+## Contributors
+
+<a href="https://github.com/Tyh2001" target="_blank">
+  <f-avatar round src="https://avatars.githubusercontent.com/u/73180970?v=4" />
+</a>
 
 <script setup>
   const listImg = [

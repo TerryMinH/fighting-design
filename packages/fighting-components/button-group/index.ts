@@ -1,7 +1,9 @@
 import FButtonGroup from './src/button-group.vue'
 
-import { install } from '@fighting-design/fighting-utils'
+import { install } from '../_utils'
 
 install(FButtonGroup, FButtonGroup.name)
 
-export { FButtonGroup }
+export type FButtonGroupInstance = InstanceType<typeof FButtonGroup>
+
+export default FButtonGroup

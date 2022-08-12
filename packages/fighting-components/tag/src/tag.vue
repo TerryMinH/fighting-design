@@ -1,61 +1,46 @@
-<template>
-  <div :class="cls" :style="sty">
-    <span class="f-text">
-      <f-icon v-if="leftIcon" size="15px" :icon="leftIcon" />
-      <slot />
-      <f-icon v-if="rightIcon" size="15px" :icon="rightIcon" />
-
-      <f-icon
-        v-if="closable"
-        class="f-iolor"
-        size="15px"
-        icon="f-icon-close"
-        @click="handleClose"
-      />
-    </span>
-  </div>
-</template>
-
 <script lang="ts" setup name="FTag">
   import { Props, Emits } from './tag'
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
+  import FIcon from '../../icon'
+  import type { handleCloseInterface as a } from './interface'
+  import type { ComputedRef, Ref } from 'vue'
+  import type { FPropsType } from './tag'
 
-  const prop = defineProps(Props)
+  const prop: FPropsType = defineProps(Props)
   const emit = defineEmits(Emits)
-  const is_light = prop.simple
-  const cls = computed(() => [
-    'f-tag',
-    is_light ? `f-tag-sim-${prop.type}` : `f-tag-${prop.type}`,
-    {
-      [`f-tag-${prop.size}`]: prop.size,
-      'f-block': prop.block,
-      'f-no-border': !prop.hit
+
+  const isShow: Ref<boolean> = ref<boolean>(true)
+
+  const classList: ComputedRef<object | string[]> = computed(
+    (): object | string[] => {
+      const { simple, type, size, block, round, line } = prop
+
+      return [
+        'f-tag',
+        `f-tag-${type}`,
+        `f-tag-${size}`,
+        {
+          'f-tag-simple': simple,
+          'f-tag-block': block,
+          'f-tag-round': round,
+          'f-tag-line': line
+        }
+      ] as const
     }
-  ])
+  )
 
-  let sty = {
-    borderRadius: prop.round
-  }
-
-  if (prop.color) {
-    sty = Object.assign(
-      sty,
-      is_light
-        ? {
-            color: prop.color,
-            border: `1px solid ${prop.color}`,
-            backgroundColor: '#fff'
-          }
-        : {
-            backgroundColor: prop.color,
-            color: '#fff',
-            border: `1px solid ${prop.color}`
-          }
-    )
-  }
-
-  const handleClose = (evt: Event): void => {
-    evt.stopPropagation()
-    emit('close', evt)
+  const handleClose: a = (evt: Event): void => {
+    isShow.value = false
+    emit('close-end', evt)
   }
 </script>
+
+<template>
+  <div v-if="isShow" :class="classList" :style="{ background, color }">
+    <f-icon v-if="leftIcon" :icon="leftIcon" />
+    <slot />
+    <f-icon v-if="rightIcon" :icon="rightIcon" />
+
+    <f-icon v-if="close" icon="f-icon-close" @click.stop="handleClose" />
+  </div>
+</template>

@@ -1,104 +1,72 @@
-@import '../config/color.scss';
-@import '../config/size.scss';
+@import '../config/const-color.scss';
+@import '../config/var-tag.scss';
 
 .f-tag {
   min-width: 60px;
   padding: 0 6px;
   font-size: 14px;
-  border-color: 1px solid #e9e9eb;
-  color: #909399;
-  display: inline-block;
-  text-align: center;
-}
-
-.f-iolor {
-  cursor: pointer;
-  opacity: 1.5;
-}
-
-.f-tag-sim-success {
-  border: 1px solid $success;
-  color: $success;
-}
-
-.f-tag-sim-danger {
-  border: 1px solid $danger;
-  color: $danger;
-}
-
-.f-tag-sim-warning {
-  border: 1px solid $warning;
-  color: $warning;
-}
-
-.f-tag-sim-info {
-  border: 1px solid $info;
-  color: $info;
-}
-
-.f-tag-sim-primary {
-  border: 1px solid $primary;
-  color: $primary;
-}
-
-.f-tag-success {
-  background-color: #f0f9eb;
-  border: 1px solid #e1f3d8;
-  color: $success;
-}
-
-.f-tag-danger {
-  background-color: #fef0f0;
-  border: 1px solid #fde2e2;
-  color: $danger;
-}
-
-.f-tag-warning {
-  background-color: #fdf6ec;
-  border: 1px solid #faecd8;
-  color: $warning;
-}
-
-.f-tag-primary {
-  background-color: #ecf5ff;
-  border: 1px solid #d9ecff;
-  color: $primary;
-}
-
-.f-tag-info {
-  background-color: #f4f4f5;
-  border: 1px solid #e9e9eb;
-  color: #909399;
-}
-
-// 标签的尺寸
-.f-tag.f-tag-large {
-  height: $large;
-  line-height: 38px;
-}
-
-// 标签的尺寸
-.f-tag.f-tag-middle {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   height: $middle;
-  line-height: 33px;
-}
+  transition: 0.5;
+  cursor: default;
 
-// 标签的尺寸
-.f-tag.f-tag-small {
-  height: $small;
-  line-height: 28px;
-}
+  // 不同的类型
+  @for $list from 1 to (length($allTypeColorList) + 1) {
+    $item: nth($allTypeColorList, $list);
 
-// 标签的尺寸
-.f-tag.f-tag-mini {
-  height: $mini;
-  line-height: 23px;
-}
+    // 不同类型
+    &.f-tag-#{map-get($item, name)} {
+      background: map-get($item, default);
+      color: map-get($item, defaultTextColor);
+      border: 1px solid map-get($item, simpleTextColor);
+    }
 
-.f-block {
-  display: block;
-}
+    // 简约模式
+    &.f-tag-simple.f-tag-#{map-get($item, name)} {
+      background: map-get($item, simple);
+      color: map-get($item, simpleTextColor);
+    }
 
-.f-no-border {
-  border: none;
+    // 线性的
+    &.f-tag-line.f-tag-#{map-get($item, name)} {
+      color: map-get($item, simpleTextColor);
+      background: none;
+    }
+  }
+
+  // 不同的尺寸
+  @for $list from 1 to (length($tagSize) + 1) {
+    $item: nth($tagSize, $list);
+
+    &.f-tag-#{map-get($item, name)} {
+      height: map-get($item, size);
+      font-size: map-get($item, fontSize);
+    }
+  }
+
+  // 块级元素
+  &.f-tag-block {
+    display: flex;
+  }
+
+  // 圆角
+  &.f-tag-round {
+    border-radius: 30px;
+  }
+
+  // 关闭按钮
+  .f-icon-close {
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: 8px;
+    text-align: right;
+
+    &:hover {
+      transition: 0.5;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+    }
+  }
 }

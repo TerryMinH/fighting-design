@@ -1,4 +1,4 @@
-import type { PropType } from 'vue'
+import type { PropType, ExtractPropTypes } from 'vue'
 import type {
   buttonSize,
   buttonTarget,
@@ -7,7 +7,7 @@ import type {
 } from './interface'
 
 export const Props = {
-  blob: {
+  bold: {
     type: Boolean,
     default: (): boolean => false
   },
@@ -107,11 +107,11 @@ export const Props = {
   },
   ripples: {
     type: Boolean,
-    default: (): boolean => true
+    default: (): boolean => false
   },
   ripplesColor: {
     type: String,
-    default: (): string => '#fff'
+    default: (): string => ''
   },
   color: {
     type: String,
@@ -122,3 +122,5 @@ export const Props = {
 export const Emits = {
   click: (evt: Event): Event => evt
 } as const
+
+export type FPropsType = ExtractPropTypes<typeof Props>

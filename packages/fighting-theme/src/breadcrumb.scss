@@ -1,0 +1,30 @@
+.f-breadcrumb {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 15px;
+  user-select: none;
+}
+
+.f-breadcrumb-item {
+  display: flex;
+  align-items: center;
+  cursor: default;
+
+  .f-breadcrumb-item-inner {
+    color: #333;
+  }
+
+  .f-breadcrumb-item-separator {
+    color: #acacac;
+    margin: 0 9px;
+    font-weight: bold;
+  }
+
+  // 最后一个分隔符隐藏
+  &:last-child {
+    .f-breadcrumb-item-separator {
+      display: none;
+    }
+  }
+}

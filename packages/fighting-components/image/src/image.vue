@@ -1,3 +1,48 @@
+<script lang="ts" setup name="FImage">
+  import FPreviewList from '../../_components/preview-list.vue'
+  import { Props, Emits, ImagePropsKey } from './image'
+  import { onMounted, ref, provide } from 'vue'
+  import { loadImage } from '../../_utils'
+  import type { Ref } from 'vue'
+  import type { callbackInterface as a } from './interface'
+  import type { ordinaryFunctionInterface as b } from '../../_interface'
+  import type { FPropsType } from './image'
+
+  const prop: FPropsType = defineProps(Props)
+  const emit = defineEmits(Emits)
+
+  provide(ImagePropsKey, prop)
+
+  const isError: Ref<boolean> = ref<boolean>(true)
+  const isLoadOk: Ref<boolean> = ref<boolean>(false)
+  const isPreviewListShow: Ref<boolean> = ref<boolean>(false)
+  const captionWidth: Ref<number> = ref<number>(0)
+  const FImageImg: Ref<HTMLImageElement> = ref<HTMLImageElement>(
+    null as unknown as HTMLImageElement
+  )
+
+  const handleClick: b = (): void => {
+    if (prop.previewList && prop.previewList.length) {
+      isPreviewListShow.value = true
+    }
+  }
+
+  const handleClose: b = (): void => {
+    isPreviewListShow.value = false
+  }
+
+  onMounted((): void => {
+    const node: HTMLImageElement = FImageImg.value as HTMLImageElement
+    const callback: a = (params: boolean, width: number): void => {
+      isError.value = params
+      isLoadOk.value = params
+      captionWidth.value = width
+    }
+
+    loadImage(node, prop, emit, callback)
+  })
+</script>
+
 <template>
   <div v-if="isError" :class="['f-image', { 'f-image-block': block }]">
     <img
@@ -15,7 +60,7 @@
       :draggable="draggable"
       :referrer-policy="referrerPolicy"
       :alt="alt"
-      @click="onClick"
+      @click="handleClick"
     />
 
     <div
@@ -32,18 +77,11 @@
       {{ caption }}
     </div>
 
-    <PreviewList
+    <!-- 大图预览框 -->
+    <f-preview-list
       v-if="prop.previewList && prop.previewList.length"
       v-show="isPreviewListShow"
-      :previewList="previewList"
-      :previewShowIndex="previewShowIndex"
-      :previewShowOption="previewShowOption"
-      :previewZIndex="previewZIndex"
-      :modalClose="modalClose"
-      :showCloseBtn="showCloseBtn"
-      :previewRound="previewRound"
-      :width="width"
-      @close="onClose"
+      @close="handleClose"
     />
   </div>
 
@@ -53,50 +91,3 @@
     </slot>
   </div>
 </template>
-
-<script lang="ts" setup name="FImage">
-  import { Props, Emits } from './image'
-  import { onMounted, ref } from 'vue'
-  import { loadImage } from '@fighting-design/fighting-utils'
-  import type { Ref } from 'vue'
-  import type {
-    ordinaryFunctionInterface,
-    callbackInterface
-  } from './interface'
-  import PreviewList from './PreviewList.vue'
-
-  const prop = defineProps(Props)
-  const emit = defineEmits(Emits)
-
-  const isError: Ref<boolean> = ref<boolean>(true)
-  const isLoadOk: Ref<boolean> = ref<boolean>(false)
-  const isPreviewListShow: Ref<boolean> = ref<boolean>(false)
-  const captionWidth: Ref<number> = ref<number>(0)
-  const FImageImg: Ref<HTMLImageElement | null> = ref<HTMLImageElement | null>(
-    null
-  )
-
-  const onClick: ordinaryFunctionInterface = (): void => {
-    if (prop.previewList && prop.previewList.length) {
-      isPreviewListShow.value = true
-    }
-  }
-
-  const onClose: ordinaryFunctionInterface = (): void => {
-    isPreviewListShow.value = false
-  }
-
-  onMounted((): void => {
-    const node: HTMLImageElement = FImageImg.value as HTMLImageElement
-    const callback: callbackInterface = (
-      params: boolean,
-      width: number
-    ): void => {
-      isError.value = params
-      isLoadOk.value = params
-      captionWidth.value = width
-    }
-
-    loadImage(node, prop, emit, callback)
-  })
-</script>

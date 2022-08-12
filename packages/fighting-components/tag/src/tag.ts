@@ -1,23 +1,27 @@
 import type { tagSize, tagType } from './interface'
-import type { PropType } from 'vue'
+import type { PropType, ExtractPropTypes } from 'vue'
 
 export const Props = {
   type: {
     type: String as PropType<tagType>,
-    default: (): tagType => 'info',
+    default: (): tagType => 'default',
     validator: (val: tagType): boolean => {
       return (
-        ['info', 'success', 'danger', 'warning', 'primary'] as const
+        ['default', 'primary', 'success', 'danger', 'warning'] as const
       ).includes(val)
     }
   },
-  closable: {
+  close: {
     type: Boolean,
     default: (): boolean => false
   },
   round: {
+    type: Boolean,
+    default: (): boolean => false
+  },
+  background: {
     type: String,
-    default: (): string => '0px'
+    default: (): string => ''
   },
   color: {
     type: String,
@@ -33,28 +37,27 @@ export const Props = {
   },
   size: {
     type: String as PropType<tagSize>,
-    default: (): tagSize => 'small',
+    default: (): tagSize => 'middle',
     validator: (val: tagSize): boolean => {
       return (['large', 'middle', 'small', 'mini'] as const).includes(val)
     }
   },
-
   simple: {
     type: Boolean,
     default: (): boolean => false
   },
-
   block: {
     type: Boolean,
     default: (): boolean => false
   },
-
-  hit: {
+  line: {
     type: Boolean,
-    default: (): boolean => true
+    default: (): boolean => false
   }
 } as const
 
 export const Emits = {
-  close: (evt: Event): Event => evt
+  'close-end': (evt: Event): Event => evt
 } as const
+
+export type FPropsType = ExtractPropTypes<typeof Props>
