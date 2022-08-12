@@ -37,77 +37,52 @@ pnpm start
 
 ## 命令说明
 
-`Fighting Design` 内部设置了很多的命令，在 [package.json](https://github.com/FightingDesign/fighting-design/blob/master/package.json) 中可以看到：
+`Fighting Design` 内部设置了很多的命令，在 [package.json](https://github.com/FightingDesign/fighting-design/blob/master/package.json) 中可以看到，下面详细介绍每一条命令
 
 ```json
 "scripts": {
-  "clean": "rimraf dist",
-  "start": "pnpm run -C start dev",
-  "dev:docs": "pnpm run -C docs dev",
-  "build": "run-s build:*",
-  "build:components": "vite build",
-  "build:theme": "vite build --config vite.config.css.ts",
-  "build:types": "vite build --config vite.config.types.ts",
-  "build:docs": "pnpm run -C docs build",
-  "serve:docs": "pnpm run -C docs serve",
-  "test": "vitest",
-  "prettier": "prettier --write ."
-},
+  "clean": "rimraf dist", // 清除 dist
+  "start": "pnpm run -C start dev", // 启动开发测试项目
+  "dev:docs": "pnpm run -C docs dev", // 启动文档项目
+  "build": "pnpm clean && vite build && pnpm build:lib && pnpm build:umd && pnpm build:theme && pnpm move", // 打包（主要的打包，打包之后就是需要发布的包）
+  "build:theme": "vite build --config vite.config.theme.ts", // 打包组件样式主题
+  "build:lib": "vite build --config vite.config.lib.ts", // lib 模式打包
+  "build:umd": "vite build --config vite.config.umd.ts", // umd 模式打包
+  "build:docs": "pnpm run -C docs build", // 打包文档
+  "build:start": "pnpm run -C start build", // 打包测试项目 start
+  "move": "node script/move-file.ts", // 移动静态文件
+  "new": "node script/new-component", // 创建新组件
+  "test": "vitest", // 单元测试
+  "prettier": "prettier --write .", // 全局格式化
+  "commit": "cz", // 启用提交插件
+  "lint": "eslint 'packages/**/*.{js,ts,vue,jsx,tsx}'",
+  "prepare": "husky install"
+}
 ```
 
-下面详细介绍每一条命令
+## 开发插件
 
-```shell
-# 清除 dist
-pnpm clean
+下面列举一些必要的 [Visual Studio Code](https://code.visualstudio.com) 开发插件，以免出现一些不可预期的错误
 
-# 启动开发测试项目
-pnpm start
+- [ESLint](https://github.com/Microsoft/vscode-eslint) - 代码格式
+- [Prettier - Code format](https://github.com/prettier/prettier-vscode) - 代码格式
+- [Vitest](https://github.com/vitest-dev/vscode) - 单元测试
+- [Vue Language Features (Volar)](https://github.com/johnsoncodehk/volar) - vue3 插件
 
-# 启动文档项目
-pnpm dev:docs
+> 注意：请不要使用 [Vetur](https://github.com/vuejs/vetur)，这是 vue2 的插件，使用会报错！！！
 
-# 打包（主要的打包，打包之后就是需要发布的包）
-pnpm build
-
-# 打包组件
-pnpm build:components
-
-# 打包组件样式主题
-pnpm build:theme
-
-# 打包组件类型
-pnpm build:type
-
-# 打包文档
-pnpm build:docs
-
-# 运行打包后的文档
-pnpm serve:docs
-
-# 单元测试
-pnpm test
-
-# 代码格式化
-pnpm prettier
-
-# 启用提交插件
-pnpm commit
-```
+`Chrome` 正版 `Vue3` 插件下载地址 [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=zh-CN)
 
 ## 开发规范
 
 主要源文件都在 `fighting-design/packages` 目录下，其中每个子目录都有单独的 `README.md` 对指定目录进行说明，每个模块详细的规范参考下面文档：
 
+**详细的规范在下面链接，千万不要忽略下面链接！！！**
+
 - [fighting-components](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-components/README.md) 组件源文件目录
 - [fighting-test](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-test/README.md) 单元测试目录
 - [fighting-theme](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-theme/README.md) 样式主题目录
-- [fighting-type](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-type/README.md) 类型目录
-- [fighting-utils](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-utils/README.md) 工具函数目录
-
-下面是关于文档规范：
-
-- [Docs](https://github.com/FightingDesign/fighting-design/blob/master/docs/README.md)
+- [Docs](https://github.com/FightingDesign/fighting-design/blob/master/docs/README.md) 文档编写规范
 
 ## 提交规范
 
@@ -150,6 +125,8 @@ git push
 
 在你提交 `PR` 之前，请务必保证你 `fork` 的仓库是当前最新的代码，以免发生冲突。
 
+如果你并不了解如何提交 `PR`，可以参考我这篇文章 [Github 如何提交 PR？](https://juejin.cn/post/7108740596738719751)
+
 所以，在提交 `PR` 之前，请务必**拉取最新的代码，拉取最新的代码，拉取最新的代码！**
 
 ## 常见问题
@@ -168,11 +145,3 @@ git push
 ## 非常感谢
 
 感谢所有已经为 `Fighting Design` [做出贡献的人](https://github.com/FightingDesign/fighting-design/graphs/contributors)！
-
-**Star**
-
-[![Stargazers repo roster for @FightingDesign/fighting-design](https://reporoster.com/stars/FightingDesign/fighting-design)](https://github.com/FightingDesign/fighting-design/stargazers)
-
-**Fork**
-
-[![Forkers repo roster for @FightingDesign/fighting-design](https://reporoster.com/forks/FightingDesign/fighting-design)](https://github.com/FightingDesign/fighting-design/network/members)

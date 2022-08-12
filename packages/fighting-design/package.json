@@ -1,6 +1,6 @@
 {
   "name": "fighting-design",
-  "version": "0.0.7",
+  "version": "0.6.0-bate.2",
   "description": "Fighting design is a Vue3 lightweight component library written with TypeScript + Template.",
   "keywords": [
     "fighting",
@@ -10,7 +10,14 @@
     "components",
     "ui"
   ],
-  "main": "packages/index.ts",
+  "module": "es/index.es.mjs",
+  "main": "lib/index.d.ts",
+  "unpkg": "dist/index.umd.js",
+  "style": "dist/style.css",
+  "sideEffects": [
+    "dist/*",
+    "theme/*.css"
+  ],
   "author": {
     "name": "tyh2001",
     "url": "https://tianyuhao.cn"

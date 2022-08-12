@@ -1,10 +1,10 @@
 # @fighting-design/fighting-components
 
-中文 | [英文](./README.en-US.md)
+中文 | [英文](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-components/README.en-US.md)
 
 ## 说明
 
-此目录是 `Fighting Design` 的所有组件的源文件。
+此目录是 `Fighting Design` 的所有组件的源文件目录。
 
 ## 新增组件
 
@@ -14,42 +14,58 @@
 
 ```
 ├── src
+|  ├── interface.d.ts
 |  ├── component.ts
 |  └── component.vue
 └── index.ts
 ```
 
+`Fighting Design` 内置了新增组件的快捷命令，可以快速帮助你创建组件所需要的文件，参考 [new-component](https://github.com/FightingDesign/fighting-design/blob/master/script/new-component/README.md)，命令：
+
+```
+pnpm new <component-name>
+```
+
 下面分别介绍一下每个文件的作用：
 
-- `component.vue`： 组件的源文件
-- `component.ts`： 写入 `Props` 和 `Emits`
-- `index.ts`：主入口文件 包含注册组件
+- `interface.d.ts` 写入组件和 `Props` 相关的所有类型
+- `component.ts` 写入 `Props` 和 `Emits`
+- `component.vue` 组件的源文件
+- `index.ts`主入口文件 包含注册组件
 
 下面将会分别介绍一下每个文件内部的一些规范。
 
-## 公共规范
+## interface.d.ts
 
-- 字符串全部使用单引号
-- 去掉末尾的分号
-- `tab` 始终为两个空格
-- 文件末尾加空行
+`interface.d.ts` 用于定义类型，每个组件中变量、函数、`Props` 相关的所有类型需要在这里定义。
+
+导出统一使用 `export`
 
 ## component.vue
 
 这是组件的源文件，内部结构为：
 
 ```html
-<template></template>
-
 <script lang="ts" setup name=""></script>
+
+<template></template>
 ```
+
+> 注意：\*.vue 文件必须将 script 在上 template 在下
 
 **结构规范**
 
-- 组建内只有两个标签（必须的）`<template>` `<script lang="ts" setup name="">`
+- 组件内只有两个标签（必须的）`<script lang="ts" setup name="">` `<template> `
 - 两大标签之间必须要有一个空行
-- 末尾要有一个空行
 - `script` 必须带有 `lang="ts" setup name=""` 三个标记，注意标记顺序
+
+**script 规范**
+
+- `script` 上的 `name` 属性是组件的名字，使用的 [unplugin-vue-setup-extend-plus](https://github.com/chenxch/unplugin-vue-setup-extend-plus) 插件。组件名必须以 `F` 开头，后面跟组件名，组件名首字母大写，例如：`FButton`
+- 引入的类型，必须使用 `type` 标记，比如：`import type { xxx } from 'xxx'`
+- 在所有 `import` 之后要带有一个空行，之后是 `prop` 和 `emit`
+- `prop` 和 `emit` 之后，也要带一个空行，再继续编写其它代码
+- 后面可以进行编写组件需要的逻辑函数，函数必须使用 `箭头函数`，除非特殊情况外，每个函数之间要有一个空行隔开。可见下面例子，取自 [f-button](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-components/button/src/button.vue)
 
 **template 规范**
 
@@ -58,33 +74,22 @@
 - 可以使用单标签均使用单标签，比如：`<slot />`
 - 可以简化的都需要简化，比如 `:style="{ color }"`
 
-**script 规范**
-
-- `script` 上的 `name` 属性是组件的名字，使用的 [vite-plugin-vue-setup-extend](https://github.com/vbenjs/vite-plugin-vue-setup-extend) 插件。组件名必须以 `F` 开头，后面跟组件名，组件名首字母大写，例如：`FButton`
-- 引入的类型，必须使用 `type` 标记，比如：`import type { xxx } from 'xxx'`
-- 在所有 `import` 之后要带有一个空行，之后是 `prop` 和 `emit`
-- `prop` 和 `emit` 之后，也要带一个空行
-- 后面可以进行编写组件需要的逻辑函数，函数必须使用 `箭头函数`，除非特殊情况外，每个函数之间要有一个空行隔开。可见下面例子，取自 [f-button](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-components/button/src/button.vue)
-
-```ts
-import { computed, ComputedRef } from 'vue'
-import { Props, Emits } from './button'
-import type { onClickInterface } from '@fighting-design/fighting-type'
-
-const prop = defineProps(Props)
-const emit = defineEmits(Emits)
-
-const onClick = (evt) => {}
-
-const iconClass = computed(() => {})
-```
-
 **Ts 类型规范**
 
 - 能定义类型的地方就要定义类型
 - 就算是类型自动推倒出来了，也要写入类型
-- `type` 或者 `interface` 等禁止在组件中直接定义，定义类型请在 [fighting-type](https://github.com/FightingDesign/fighting-design/tree/master/packages/fighting-type) 中定义，定义规范请参考 [@fighting-design/fighting-type](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-type/README.md)
+- `type` 或者 `interface` 等禁止在组件中直接定义，定义类型请在 `interface.d.ts` 中定义
 - 禁止出现 `any`。如有特殊情况可发起 [讨论](https://github.com/FightingDesign/fighting-design/discussions) 或者群里提问
+- 定义函数类型通常命名规范为 `函数名+Interface`，但是由于这种规则定义的名称较长，你也可以使用简短的别名来定义（别名的定义仅限于自定义的接口类型，例如 `ComputedRef` 是从 `vue` 中引入的则不可以设置别名），例如下面代码，取自 [preview-list](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-components/image/components/preview-list.vue)：
+
+```ts
+import type {
+  switchImageInterface as a,
+  optionClickInterface as b,
+  onImgMousewheelInterface as c,
+  handleCloseInterface as d
+} from '../src/interface'
+```
 
 下面举例常用的定义类型规范：
 
@@ -110,20 +115,18 @@ const com: ComputedRef<string> = computed<string>((): string => {
 
 - 定义函数
 
-[fighting-type](https://github.com/FightingDesign/fighting-design/tree/master/packages/fighting-type) 中定义类型
-
 ```ts
+// interface.d.ts 中定义类型
 export interface funInterface {
   (a: number, b: number): number
 }
 ```
 
-引入使用类型
-
 ```ts
-import type { funInterface } from './xxx'
+// 引入使用类型
+import type { funInterface as a } from './interface'
 
-const fun: funInterface = (a: number, b: number): number => {
+const fun: a = (a: number, b: number): number => {
   return a + b
 }
 ```
@@ -153,19 +156,25 @@ const fun: funInterface = (a: number, b: number): number => {
 
 - 每行代码之间要有一个空行
 - 结尾要有空行
-- 导出必须使用 `export { xxx }` 导出，而不是 `export default`
-
-例：
+- 导出统一使用默认导出，如下代码：
 
 ```ts
 import FButton from './src/button.vue'
 
-import { install } from '@fighting-design/fighting-utils'
+import { install } from '../_utils'
 
 install(FButton, FButton.name)
 
-export { FButton }
+export default FButton
 ```
+
+## 工具函数
+
+在 `packages/fighting-components/_utils` 目录中可以定义一些工具函数和类，文件名统一使用短横杠连接，不可以出现大写字母。
+
+定义的函数需要在 `index.ts` 中统一导出。
+
+工具函数的类型可以在 `packages/fighting-components/_interface` 中进行定义。
 
 ## 主入口文件
 

@@ -1,5 +1,5 @@
-import type { dividerPosition } from '@fighting-design/fighting-type'
-import type { PropType } from 'vue'
+import type { dividerPosition, dividerType } from './interface'
+import type { PropType, ExtractPropTypes } from 'vue'
 
 export const Props = {
   position: {
@@ -28,5 +28,14 @@ export const Props = {
   background: {
     type: String,
     default: (): string => ''
+  },
+  type: {
+    type: String as PropType<dividerType>,
+    validator: (value: dividerType): boolean => {
+      return (['dashed', 'dotted', 'double', 'solid'] as const).includes(value)
+    },
+    default: (): dividerType => 'solid'
   }
 } as const
+
+export type FPropsType = ExtractPropTypes<typeof Props>

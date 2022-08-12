@@ -1,18 +1,14 @@
-import type { PropType } from 'vue'
-import type {
-  linkType,
-  linkTarget,
-  linkHover
-} from '@fighting-design/fighting-type'
+import type { PropType, ExtractPropTypes } from 'vue'
+import type { linkType, linkTarget, linkHover } from './interface'
 
 export const Props = {
   type: {
     type: String as PropType<linkType>,
     default: (): linkType => 'primary',
     validator: (val: linkType): boolean => {
-      return (['primary', 'success', 'danger', 'warning'] as const).includes(
-        val
-      )
+      return (
+        ['default', 'primary', 'success', 'danger', 'warning'] as const
+      ).includes(val)
     }
   },
   href: {
@@ -66,3 +62,5 @@ export const Props = {
 export const Emits = {
   click: (evt: Event): Event => evt
 } as const
+
+export type FPropsType = ExtractPropTypes<typeof Props>

@@ -1,16 +1,11 @@
-<template>
-  <f-container>
-    <f-header>Header</f-header>
-    <f-main padding="20px">Main</f-main>
-  </f-container>
-  <f-button>121</f-button>
-</template>
+<script lang="ts" setup>
+  // import { FMessage } from '../../dist'
+  import { FIconAiming } from '@fighting-design/fighting-icon'
+</script>
 
-<style scoped>
-  .f-header {
-    background: skyblue;
-  }
-  .f-main {
-    background: orange;
-  }
-</style>
+<template>
+  <f-button href="https://tianyuhao.cn" target="_blank">123</f-button>
+  <FIconAiming fill="red" theme="outline" />
+
+  <aiming theme="outline" size="24" fill="#333" />
+</template>

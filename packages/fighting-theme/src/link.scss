@@ -1,4 +1,4 @@
-@import '../config/var-link.scss';
+@import '../config/const-color.scss';
 
 .f-link {
   cursor: pointer;
@@ -8,19 +8,25 @@
   transition: 0.3s;
   line-height: 1;
   color: $primary;
+
   &.f-icon {
     font-size: 15px;
   }
+
   &:hover {
     opacity: 0.8;
   }
 
   // 不同类型
-  @each $key, $value in $LinkTypes {
-    &.f-link-#{$key} {
-      color: $value;
+  @for $list from 1 to (length($allTypeColorList) + 1) {
+    $item: nth($allTypeColorList, $list); // 获取数组中第i项的值
+
+    // 不同类型
+    &.f-link-#{map-get($item, name)} {
+      color: map-get($item, simpleTextColor);
     }
   }
+
   // 不同样式
   &.f-link-line {
     text-decoration: underline;
@@ -40,6 +46,7 @@
   &.f-link-prohibit {
     opacity: 0.5;
     cursor: not-allowed;
+
     &.f-link-bag {
       &:hover {
         background: none;

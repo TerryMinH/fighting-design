@@ -1,7 +1,9 @@
 import FAside from './src/aside.vue'
 
-import { install } from '@fighting-design/fighting-utils'
+import { install } from '../_utils'
 
 install(FAside, FAside.name)
 
-export { FAside }
+export type FAsideInstance = InstanceType<typeof FAside>
+
+export default FAside

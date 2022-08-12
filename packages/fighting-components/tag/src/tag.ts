@@ -1,14 +1,39 @@
-import type { tagSize, tagTheme } from '@fighting-design/fighting-type'
-import type { PropType } from 'vue'
+import type { tagSize, tagType } from './interface'
+import type { PropType, ExtractPropTypes } from 'vue'
 
 export const Props = {
-  closable: {
+  type: {
+    type: String as PropType<tagType>,
+    default: (): tagType => 'default',
+    validator: (val: tagType): boolean => {
+      return (
+        ['default', 'primary', 'success', 'danger', 'warning'] as const
+      ).includes(val)
+    }
+  },
+  close: {
     type: Boolean,
     default: (): boolean => false
   },
+  round: {
+    type: Boolean,
+    default: (): boolean => false
+  },
+  background: {
+    type: String,
+    default: (): string => ''
+  },
   color: {
     type: String,
-    default: (): string => '#909399'
+    default: (): string => ''
+  },
+  leftIcon: {
+    type: String,
+    default: (): string => ''
+  },
+  rightIcon: {
+    type: String,
+    default: (): string => ''
   },
   size: {
     type: String as PropType<tagSize>,
@@ -17,15 +42,22 @@ export const Props = {
       return (['large', 'middle', 'small', 'mini'] as const).includes(val)
     }
   },
-  theme: {
-    type: String as PropType<tagTheme>,
-    default: (): tagTheme => 'dark',
-    validator: (val: tagTheme): boolean => {
-      return (['light', 'dark'] as const).includes(val)
-    }
+  simple: {
+    type: Boolean,
+    default: (): boolean => false
+  },
+  block: {
+    type: Boolean,
+    default: (): boolean => false
+  },
+  line: {
+    type: Boolean,
+    default: (): boolean => false
   }
 } as const
 
 export const Emits = {
-  close: (evt: Event): Event => evt
+  'close-end': (evt: Event): Event => evt
 } as const
+
+export type FPropsType = ExtractPropTypes<typeof Props>
