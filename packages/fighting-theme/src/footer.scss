@@ -1,5 +1,6 @@
 .f-footer {
-  height: 60px;
-  box-sizing: border-box;
   flex-shrink: 0;
+  box-sizing: border-box;
+  height: var(--footer-height, 60px);
+  padding: var(--footer-padding, 0);
 }

@@ -1,0 +1,108 @@
+@import '../config/var-notification';
+
+.f-notification {
+  position: fixed;
+  padding: 13px 20px;
+  font-size: 14px;
+  min-width: 300px;
+  max-width: 500px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease-out;
+  z-index: var(--notification-z-index, 4000);
+  background: var(--notification-background, #fff);
+  color: var(--notification-color);
+
+  // 圆角的
+  &.f-notification__round {
+    border-radius: 10px;
+  }
+
+  &.f-notification__top {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.f-notification__top-left {
+    left: 20px;
+  }
+
+  &.f-notification__top-right {
+    right: 20px;
+  }
+
+  &.f-notification__bottom {
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+  }
+
+  &.f-notification__bottom-left {
+    left: 20px;
+    bottom: 0;
+  }
+
+  &.f-notification__bottom-right {
+    right: 20px;
+    bottom: 0;
+  }
+
+  // 前缀 icon
+  &__icon {
+    margin-right: 10px;
+  }
+
+  // 主要内容
+  &__content {
+    padding-right: 21px;
+
+    // 标题
+    .f-notification__title {
+      margin: 0;
+      margin-bottom: 10px;
+      color: #19191a;
+      font-weight: 500;
+      font-size: 18px;
+    }
+
+    // 内容
+    .f-notification__message {
+      font-size: 15px;
+      color: #4a4a4d;
+      font-weight: 500;
+    }
+  }
+
+  // 关闭按钮
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
+  // 左右动画
+  &-fade-right-enter-active,
+  &-fade-right-leave-active,
+  &-fade-left-enter-active,
+  &-fade-left-leave-active {
+    transition: all 0.3s ease-out;
+  }
+
+  // 右侧弹出
+  &-fade-right-enter-from,
+  &-fade-right-leave-to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  // 左侧弹出
+  &-fade-left-enter-from,
+  &-fade-left-leave-to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}

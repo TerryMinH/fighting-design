@@ -1,0 +1,16 @@
+{
+  "name": "fighting-playground",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vue/repl": "^3.0.0"
+  },
+  "devDependencies": {
+    "fflate": "^0.7.3"
+  },
+  "license": "MIT"
+}

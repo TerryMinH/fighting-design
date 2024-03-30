@@ -1,0 +1,32 @@
+.f-close-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px;
+  box-sizing: border-box;
+  user-select: none;
+  transition: 0.3s;
+  color: var(--close-btn-color, #2d5af1);
+
+  // 圆角的
+  &.f-close-btn__round {
+    border-radius: 25px;
+  }
+
+  &:not([class~='f-close-btn__disabled']):hover {
+    opacity: 0.8;
+    background-color: #f4f4f4;
+    color: var(--close-btn-hover-color, #ff0200);
+  }
+
+  &:not([class~='f-close-btn__disabled']):active {
+    opacity: 1;
+  }
+
+  // 禁用状态
+  &__disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+}

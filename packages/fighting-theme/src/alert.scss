@@ -1,72 +1,85 @@
-@import '../config/const-color.scss';
+@import '../config/var-alert';
 
 .f-alert {
-  padding: 10px 16px;
-  color: #fff;
+  display: flex;
+  padding: 8px 10px;
+  margin: 0;
   position: relative;
+  align-items: center;
   box-sizing: border-box;
+  border-radius: var(--alert-border-radius);
+  color: var(--alert-color);
+  transition: 0.3s;
+  background-color: var(--alert-background);
 
-  @for $list from 1 to (length($allTypeColorList) + 1) {
-    $item: nth($allTypeColorList, $list); // 获取数据中心第i项的值
+  // 主要内容
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 1 1 auto;
 
-    // 不同类型
-    &.f-alert-#{map-get($item, name)} {
-      background: map-get($item, default);
-      color: map-get($item, defaultTextColor);
+    // 主标题
+    .f-alert__title {
+      font-weight: bold;
+      margin-left: 10px;
+      font-size: var(--alert-title-size, 17px);
+      color: var(--alert-title-color);
     }
 
-    // 简约的
-    &.f-alert-simple.f-alert-#{map-get($item, name)} {
-      background: map-get($item, simple);
-      color: map-get($item, simpleTextColor);
+    // 副标题
+    .f-alert__sub-title {
+      display: block;
+      margin-left: 10px;
+      line-height: 24px;
+      font-size: var(--alert-font-size, 14px);
     }
-  }
 
-  // 关闭按钮
-  .f-alert-close {
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translate(0%, -50%);
+    // 滚动列表
+    .f-alert__list {
+      margin-left: 10px;
+      height: 24px;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      font-size: var(--alert-font-size, 15px);
 
-    &:hover {
-      transition: 0.5;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
+      .f-alert__list-item {
+        line-height: 24px;
+      }
     }
-  }
-
-  .f-alert-title {
-    font-weight: bold;
-  }
-
-  .f-alert-sub-title {
-    display: block;
   }
 
   // 加粗
-  &.f-alert-bold {
+  &.f-alert__bold {
     font-weight: bold;
   }
 
   // 居中
-  &.f-alert-center {
-    text-align: center;
-  }
-
-  // 圆角
-  &.f-alert-round {
-    border-radius: 20px;
+  &.f-alert__center .f-alert__content {
+    justify-content: center;
   }
 
   // 固定定位
-  &.f-alert-fixed {
+  &.f-alert__fixed {
     width: 100%;
     position: fixed;
+  }
+
+  // 关闭按钮
+  & > .f-close-btn {
+    position: absolute;
+    right: 10px;
+  }
+
+  // 关闭动画
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.2s ease-out;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    transform: scale(0.5);
+    opacity: 0;
   }
 }

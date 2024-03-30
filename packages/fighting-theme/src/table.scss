@@ -1,0 +1,98 @@
+.f-table {
+  display: block;
+  position: relative;
+  width: var(--table-width, auto);
+
+  // 主容器
+  &__container {
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: var(--table-bg-color, #fff);
+
+    // 身体
+    .f-table__body {
+      height: var(--table-height);
+      overflow: auto;
+
+      // 没有数据的盒子
+      .table__no-data {
+        padding: 40px;
+        box-sizing: border-box;
+      }
+    }
+
+    // table 公共样式
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      table-layout: fixed;
+      text-align: left;
+      display: inline-table;
+      width: var(--table-width, 100%);
+
+      // 头部
+      thead {
+        background-color: var(--table-head-bg-color, #f7f7f7);
+        font-size: 15px;
+        color: #4e4e4e;
+        height: 45px;
+        position: relative;
+        z-index: 200;
+        cursor: default;
+
+        tr {
+          border-bottom: 1px solid #eee;
+
+          th {
+            font-weight: 500;
+            padding: 12px;
+            box-sizing: border-box;
+            font-size: 15px;
+            color: #4f4f4f;
+            word-wrap: break-word;
+            font-weight: 600;
+          }
+        }
+      }
+
+      // 身体
+      tbody {
+        font-size: 16px;
+        color: #4e4e4e;
+        height: 45px;
+
+        tr {
+          border-bottom: 1px solid #eee;
+
+          td {
+            font-weight: 500;
+            padding: 12px;
+            font-size: 15px;
+            box-sizing: border-box;
+            color: #333;
+            word-wrap: break-word;
+          }
+        }
+      }
+    }
+  }
+
+  // 斑马纹
+  &.f-table__zebra {
+    tbody {
+      // https://developer.mozilla.org/zh-CN/docs/Web/CSS/:nth-child
+      tr:nth-child(2n) {
+        background-color: var(--table-zebra-color, #f7f7f7);
+      }
+    }
+  }
+
+  // 边框状态
+  &.f-table__border {
+    th,
+    td {
+      border-right: 1px solid #eee;
+    }
+  }
+}

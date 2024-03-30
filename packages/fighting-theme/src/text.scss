@@ -1,44 +1,44 @@
-@import '../config/const-color.scss';
+@import '../config/var-text';
 
 .f-text {
-  font-size: 15px;
+  margin: 0;
+  cursor: inherit;
   display: inline-block;
   word-break: break-all;
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
-  cursor: default;
-
-  // 不同类型
-  @for $list from 1 to (length($allTypeColorList) + 1) {
-    $item: nth($allTypeColorList, $list); // 获取数据中心第i项的值
-
-    // 不同类型
-    &.f-text-#{map-get($item, name)} {
-      color: map-get($item, simpleTextColor);
-    }
-  }
+  font-weight: 500;
+  transition: 0.3s;
+  width: var(--text-width);
+  padding: var(--text-padding, 0);
+  background-color: var(--text-background);
+  text-indent: var(--text-indent);
+  line-height: var(--text-line-height);
+  letter-spacing: var(--text-spacing);
+  text-decoration: var(--text-decoration);
+  color: var(--text-color);
+  font-size: var(--text-size, 15px);
 
   // 加粗
-  &.f-text-bold {
+  &.f-text__bold {
     font-weight: bold;
   }
 
   // 独占一行
-  &.f-text-block {
+  &.f-text__block {
     display: block;
   }
 
   // 是否省略文本
-  &.f-text-ellipsis {
+  &.f-text__ellipsis {
     overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
+    vertical-align: bottom;
+    text-overflow: ellipsis;
   }
 
   // 居中
-  &.f-text-center {
-    text-align: center;
+  &.f-text__center {
     display: block;
+    text-align: center;
   }
 }

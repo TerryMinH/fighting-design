@@ -1,0 +1,101 @@
+@import '../config/var-input';
+
+.f-input {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  height: var(--input-height);
+  width: var(--input-width);
+
+  // 主容器
+  &__wrapper {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 7px;
+    box-sizing: border-box;
+    height: 100%;
+    transition: 0.3s;
+    border: 1px solid #ddd;
+    background: #fff;
+    outline: 4px solid transparent;
+    border-radius: 5px;
+
+    .f-input__icon {
+      color: #333;
+    }
+
+    // 输入框
+    .f-input__input {
+      height: 100%;
+      width: 100%;
+      border: none;
+      outline: none;
+      background: none;
+      cursor: pointer;
+      margin: 0 5px;
+      font-size: var(--input-font-size, 14px);
+      color: var(--input-text-color);
+      user-select: none;
+      font-family: Arial, sans-serif;
+
+      // 禁用原生右侧上下选择箭头
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      // 占位符颜色
+      &::placeholder {
+        color: var(--input-placeholder-color, #b1b1b1);
+      }
+    }
+
+    // 清除按钮
+    .f-input__show-password,
+    .f-input__clear-btn {
+      cursor: pointer;
+      color: #c3c3c3;
+    }
+
+    &:focus-within {
+      outline: 4px solid rgba(92, 128, 245, 0.5);
+    }
+  }
+
+  // 搜索框
+  &__search {
+    cursor: pointer;
+
+    // 移除 input 圆角
+    .f-input__wrapper {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    // 移除 button 圆角
+    .f-button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  // 禁用状态
+  &__disabled {
+    cursor: not-allowed;
+
+    .f-input__input {
+      cursor: not-allowed;
+      color: #757575;
+    }
+
+    .f-input__clear-btn {
+      cursor: not-allowed;
+    }
+  }
+}

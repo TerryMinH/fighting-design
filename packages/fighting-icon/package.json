@@ -1,9 +1,29 @@
 {
   "name": "@fighting-design/fighting-icon",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.ts",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "version": "0.4.0",
+  "description": "Special svg icon library for fighting-design.",
+  "main": "index",
+  "module": "index",
+  "types": "index.d.ts",
+  "keywords": [
+    "svg",
+    "icon",
+    "vue",
+    "vuejs",
+    "fighting",
+    "design",
+    "fighting-icon",
+    "fighting-design"
+  ],
+  "sideEffects": false,
+  "author": {
+    "name": "Tyh2001",
+    "url": "https://github.com/Tyh2001"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FightingDesign/fighting-design/issues"
+  },
+  "homepage": "https://fighting.tianyuhao.cn/components/svg-icon.html",
+  "repository": "https://github.com/FightingDesign/fighting-design"
 }

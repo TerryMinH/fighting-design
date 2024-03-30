@@ -1,0 +1,113 @@
+.f-image-preview {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  // 遮罩层
+  &__mask {
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    background-color: #23272e;
+  }
+
+  // 主容器
+  &__container {
+    position: absolute;
+    inset: 0;
+    z-index: 1999;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .f-image-preview__wrapper {
+      // 图标元素
+      .f-image-preview__node {
+        transition: 0.3s;
+      }
+
+      // 主内容动画样式
+      &-transition-enter-active,
+      &-transition-leave-active {
+        transition: all 0.2s ease-out;
+      }
+
+      &-transition-enter-from,
+      &-transition-leave-to {
+        opacity: 0;
+        transform: scale(0.4);
+      }
+    }
+  }
+
+  // 主容器居中
+  &__container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .f-image-preview__wrapper {
+      border-radius: 6px;
+      max-height: calc(100vh - 200px);
+      max-width: calc(100vw - 140px);
+      box-shadow: 0 0 18px #00000066;
+
+      &-transition-enter-from,
+      &-transition-leave-to {
+        transform: scale(0.4);
+      }
+    }
+  }
+
+  // 操作栏
+  &__option {
+    width: 370px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 25px;
+    margin: auto;
+    z-index: 200;
+  }
+
+  // 切换按钮
+  &__next,
+  &__prev,
+  &__close {
+    position: fixed;
+    margin: auto;
+    z-index: 200;
+  }
+
+  &__prev {
+    left: 30px;
+    top: 0;
+    bottom: 0;
+  }
+
+  &__next {
+    right: 30px;
+    top: 0;
+    bottom: 0;
+  }
+
+  &__close {
+    right: 30px;
+    top: 30px;
+  }
+
+  // 遮罩层动画
+  &__transition-enter-active {
+    transition: all 0.2s ease-out;
+  }
+
+  &__transition-leave-active {
+    transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  &__transition-enter-from,
+  &__transition-leave-to {
+    opacity: 0;
+  }
+}

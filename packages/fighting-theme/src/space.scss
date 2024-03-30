@@ -1,33 +1,37 @@
 .f-space {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
+  vertical-align: middle;
+  column-gap: var(--space-column-gap, 10px);
+  row-gap: var(--space-row-gap, 10px);
 
-  // 排列方式
-  &.f-space-vertical {
-    flex-direction: column-reverse;
+  // 纵向排列
+  &.f-space__vertical {
+    flex-direction: column;
   }
 
-  // 是否换行
-  &.f-space-wrap {
-    flex-wrap: wrap;
+  // 是否禁止换行
+  &.f-space__nowrap {
+    flex-wrap: nowrap;
   }
 
   // 不同尺寸
-  &.f-space-large {
+  &.f-space__large {
     column-gap: 14px;
     row-gap: 14px;
   }
 
-  &.f-space-middle {
+  &.f-space__middle {
     column-gap: 10px;
     row-gap: 10px;
   }
 
-  &.f-space-small {
+  &.f-space__small {
     column-gap: 6px;
     row-gap: 6px;
   }
 
-  &.f-space-mini {
+  &.f-space__mini {
     column-gap: 2px;
     row-gap: 2px;
   }
